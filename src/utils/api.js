@@ -1,22 +1,13 @@
-// Getting the month
-const getCurrentMonth = () => {
-  const month = new Date().getMonth() + 1;
-  return month < 10 ? `0${month}` : month;
-};
+const baseURL = `https://api.themoviedb.org/3`;
 
-// Getting the day
-const getCurrentDay = () => {
-  const day = new Date().getDay() + 1;
-  return day < 10 ? `0${day}` : day;
-};
+export const apiKey = 'ee545096570d58623c4631d622b9e874';
 
-// Current day/month/year
-const currentYear = new Date().getFullYear();
-const currentMonth = getCurrentMonth();
-const currentDay = getCurrentDay();
-// eslint-disable-next-line no-unused-vars
-const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-// eslint-disable-next-line no-unused-vars
-const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-// eslint-disable-next-line no-unused-vars
-const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+export const posterImgUrl = 'https://image.tmdb.org/t/p/original/';
+export const personImgUrl = 'https://image.tmdb.org/t/p/w200';
+
+export const nowPlaying = `${baseURL}/movie/now_playing`;
+export const topRatedURL = `${baseURL}/movie/top_rated`;
+export const movieURL = `${baseURL}/movie`;
+export const genreURL = `${baseURL}/genre/movie/list`;
+export const moviesURL = `${baseURL}/discover/movie`;
+export const personsURL = `${baseURL}/trending/person/week`;
