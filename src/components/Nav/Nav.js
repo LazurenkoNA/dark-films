@@ -30,7 +30,7 @@ const Nav = () => {
     if (value) {
       dispatch(setCurrentPage(value));
     } else {
-      dispatch(setCurrentPage(event.target.textContent));
+      dispatch(setCurrentPage(textContent));
     }
   };
 
