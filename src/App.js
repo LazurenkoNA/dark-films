@@ -1,5 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import { blue, grey, orange } from '@material-ui/core/colors';
 import {
   fetchCasts,
   fetchGenreMovies,
@@ -10,12 +12,30 @@ import {
   fetchSimilarMovie,
   fetchTopRatedMovie,
 } from './actions/moviesAction';
+import Nav from './components/Nav/Nav';
 
 function App() {
   const dispatch = useDispatch();
+  const { isDarkTheme } = useSelector((state) => state.theme);
 
+  // Theme
+  const palletType = isDarkTheme ? 'dark' : 'light';
+  const mainPrimaryColor = isDarkTheme ? orange[300] : blue[600];
+  const mainSecondaryColor = isDarkTheme ? grey[800] : blue[50];
+  const theme = createMuiTheme({
+    palette: {
+      type: palletType,
+      primary: {
+        main: mainPrimaryColor,
+      },
+      secondary: {
+        main: mainSecondaryColor,
+      },
+    },
+  });
+
+  // Test fetch data on start rendering
   useEffect(() => {
-    // Test fetch data on start rendering
     dispatch(fetchNowMovies());
     dispatch(fetchGenreMovies());
     dispatch(fetchMovieByGenreData(99));
@@ -26,7 +46,12 @@ function App() {
     dispatch(fetchSimilarMovie(531499));
   }, [dispatch]);
 
-  return <div className="App" />;
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Nav />
+    </MuiThemeProvider>
+  );
 }
 
 export default App;

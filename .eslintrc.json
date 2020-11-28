@@ -33,6 +33,7 @@
     ],
     "react/state-in-constructor": "off",
     "react/react-in-jsx-scope": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/jsx-no-undef": "off"
   }
 }
