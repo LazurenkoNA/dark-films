@@ -10,6 +10,7 @@ import { Button } from '@material-ui/core';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
 
+// Initialization branch
 const Nav = () => {
   // Styles
   const classes = useStyles();
