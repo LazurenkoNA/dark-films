@@ -9,22 +9,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, FormControl, MenuItem, Select } from '@material-ui/core';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
+import setCurrentPage from '../../actions/currentPageAction';
 
-// Initialization branch
 const Nav = () => {
   // Styles
   const classes = useStyles();
 
   const dispatch = useDispatch();
   const { isDarkTheme } = useSelector((state) => state.theme);
+  const { currentPage } = useSelector((state) => state.currentPage);
 
-  const handleThemeChange = () => {
+  const handleChangeTheme = () => {
     dispatch(toggleTheme());
   };
 
-  const [age, setAge] = React.useState('Movies');
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const handleChangePage = (event) => {
+    if (event.target.value) {
+      dispatch(setCurrentPage(event.target.value));
+    } else {
+      dispatch(setCurrentPage(event.target.textContent));
+    }
   };
 
   return (
@@ -38,29 +42,31 @@ const Nav = () => {
           {/* Categories List */}
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
-              <Button className={classes.navButton} color="secondary">
-                Movies
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                movies
               </Button>
-              <Button className={classes.navButton} color="secondary">
-                Cartoons
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                cartoons
               </Button>
-              <Button className={classes.navButton} color="secondary">
-                Anime
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                anime
               </Button>
-              <Button className={classes.navButton} color="secondary">
-                Serials
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                serials
               </Button>
             </Box>
           ) : (
             <Box className={classes.navList}>
               <FormControl className={classes.formControl} color="secondary">
-                <Select value={age} onChange={handleChange} className={classes.formControlSelect}>
-                  <MenuItem value="Movies" selected>
-                    Movies
-                  </MenuItem>
-                  <MenuItem value="Cartoons">Cartoons</MenuItem>
-                  <MenuItem value="Anime">Anime</MenuItem>
-                  <MenuItem value="Serials">Serials</MenuItem>
+                <Select
+                  value={currentPage}
+                  onChange={handleChangePage}
+                  className={classes.formControlSelect}
+                >
+                  <MenuItem value="movies">Movies</MenuItem>
+                  <MenuItem value="cartoons">Cartoons</MenuItem>
+                  <MenuItem value="anime">Anime</MenuItem>
+                  <MenuItem value="serials">Serials</MenuItem>
                 </Select>
               </FormControl>{' '}
             </Box>
@@ -80,7 +86,7 @@ const Nav = () => {
             />
           </div>
           <Box className={classes.navIcons}>
-            <IconButton className={classes.navButton} onClick={handleThemeChange} color="secondary">
+            <IconButton className={classes.navButton} onClick={handleChangeTheme} color="secondary">
               {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
 
