@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('background-color'),
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    marginRight: theme.spacing(10),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -55,6 +56,25 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     [theme.breakpoints.down('xs')]: {
       marginLeft: theme.spacing(0.5),
+    },
+  },
+  navList: {
+    flexGrow: 1,
+  },
+  navIcons: {
+    display: 'flex',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 80,
+  },
+  formControlSelect: {
+    color: theme.palette.secondary.main,
+    '&:before': {
+      borderColor: theme.palette.secondary.main,
+    },
+    '& svg path': {
+      fill: theme.palette.secondary.main,
     },
   },
 }));
