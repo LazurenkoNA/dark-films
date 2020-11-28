@@ -4,8 +4,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { Brightness4, Brightness7, Menu, Search } from '@material-ui/icons';
+import { Brightness4, Brightness7, Person, Search } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
 
@@ -24,14 +25,6 @@ const Nav = () => {
     <div className={classes.root}>
       <AppBar position="fixed" color="primary">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="secondary"
-            aria-label="open drawer"
-          >
-            <Menu />
-          </IconButton>
           <Typography className={classes.title} variant="h6" color="secondary" noWrap>
             DARK FILMS
           </Typography>
@@ -49,9 +42,19 @@ const Nav = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <IconButton onClick={handleThemeChange} color="secondary">
+          <IconButton className={classes.navButton} onClick={handleThemeChange} color="secondary">
             {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
+          {/* Log in button, breakpoint */}
+          {window.screen.width >= 600 ? (
+            <Button className={classes.navButton} color="secondary" variant="outlined">
+              LOG IN
+            </Button>
+          ) : (
+            <IconButton className={classes.navButton} color="secondary">
+              <Person />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </div>

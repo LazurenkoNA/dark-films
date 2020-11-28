@@ -3,9 +3,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
+    transition: theme.transitions.create('background-color'),
   },
   title: {
     flexGrow: 1,
@@ -51,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
       '&:focus': {
         width: '20ch',
       },
+    },
+  },
+  navButton: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: theme.spacing(0.5),
     },
   },
 }));
