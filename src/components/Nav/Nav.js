@@ -24,8 +24,11 @@ const Nav = () => {
   };
 
   const handleChangePage = (event) => {
-    if (event.target.value) {
-      dispatch(setCurrentPage(event.target.value));
+    const { value, textContent } = event.target;
+
+    if (value === currentPage || textContent === currentPage) return;
+    if (value) {
+      dispatch(setCurrentPage(value));
     } else {
       dispatch(setCurrentPage(event.target.textContent));
     }

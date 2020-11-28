@@ -1,7 +1,7 @@
 import { CHANGE_PAGE } from '../utils/constants';
 
 const initState = {
-  currentPage: 'Movies',
+  currentPage: 'movies',
 };
 
 const currentPageReducer = (state = initState, action) => {
