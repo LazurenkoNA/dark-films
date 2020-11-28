@@ -45,6 +45,7 @@ const Nav = () => {
           {/* Categories List */}
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
+              {/* Refactoring through .map */}
               <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
                 movies
               </Button>
@@ -66,6 +67,7 @@ const Nav = () => {
                   onChange={handleChangePage}
                   className={classes.formControlSelect}
                 >
+                  {/* Refactoring through .map */}
                   <MenuItem value="movies">Movies</MenuItem>
                   <MenuItem value="cartoons">Cartoons</MenuItem>
                   <MenuItem value="anime">Anime</MenuItem>
