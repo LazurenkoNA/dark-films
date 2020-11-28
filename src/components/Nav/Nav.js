@@ -6,9 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { Brightness4, Brightness7, Person, Search } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Box, Button, FormControl, MenuItem, Select } from '@material-ui/core';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
+import setCurrentPage from '../../actions/currentPageAction';
 
 const Nav = () => {
   // Styles
@@ -16,9 +17,21 @@ const Nav = () => {
 
   const dispatch = useDispatch();
   const { isDarkTheme } = useSelector((state) => state.theme);
+  const { currentPage } = useSelector((state) => state.currentPage);
 
-  const handleThemeChange = () => {
+  const handleChangeTheme = () => {
     dispatch(toggleTheme());
+  };
+
+  const handleChangePage = (event) => {
+    const { value, textContent } = event.target;
+
+    if (value === currentPage || textContent === currentPage) return;
+    if (value) {
+      dispatch(setCurrentPage(value));
+    } else {
+      dispatch(setCurrentPage(textContent));
+    }
   };
 
   return (
@@ -28,6 +41,42 @@ const Nav = () => {
           <Typography className={classes.title} variant="h6" color="secondary" noWrap>
             DARK FILMS
           </Typography>
+
+          {/* Categories List */}
+          {window.screen.width >= 960 ? (
+            <Box className={classes.navList}>
+              {/* Refactoring through .map */}
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                movies
+              </Button>
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                cartoons
+              </Button>
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                anime
+              </Button>
+              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
+                serials
+              </Button>
+            </Box>
+          ) : (
+            <Box className={classes.navList}>
+              <FormControl className={classes.formControl} color="secondary">
+                <Select
+                  value={currentPage}
+                  onChange={handleChangePage}
+                  className={classes.formControlSelect}
+                >
+                  {/* Refactoring through .map */}
+                  <MenuItem value="movies">Movies</MenuItem>
+                  <MenuItem value="cartoons">Cartoons</MenuItem>
+                  <MenuItem value="anime">Anime</MenuItem>
+                  <MenuItem value="serials">Serials</MenuItem>
+                </Select>
+              </FormControl>{' '}
+            </Box>
+          )}
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <Search color="secondary" />
@@ -38,23 +87,25 @@ const Nav = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              // color="secondary"
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <IconButton className={classes.navButton} onClick={handleThemeChange} color="secondary">
-            {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
-          </IconButton>
-          {/* Log in button, breakpoint */}
-          {window.screen.width >= 600 ? (
-            <Button className={classes.navButton} color="secondary" variant="outlined">
-              LOG IN
-            </Button>
-          ) : (
-            <IconButton className={classes.navButton} color="secondary">
-              <Person />
+          <Box className={classes.navIcons}>
+            <IconButton className={classes.navButton} onClick={handleChangeTheme} color="secondary">
+              {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
-          )}
+
+            {/* Log in button, breakpoint */}
+            {window.screen.width >= 960 ? (
+              <Button className={classes.navButton} color="secondary" variant="outlined">
+                LOG IN
+              </Button>
+            ) : (
+              <IconButton className={classes.navButton} color="secondary">
+                <Person />
+              </IconButton>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
     </div>
