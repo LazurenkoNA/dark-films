@@ -53,7 +53,7 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Nav />
-      <CardSection />
+      {/* <CardSection /> */}
     </MuiThemeProvider>
   );
 }
