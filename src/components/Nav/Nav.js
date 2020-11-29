@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { Brightness4, Brightness7, Person, Search } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, FormControl, MenuItem, Select } from '@material-ui/core';
+import { Box, Button, FormControl, MenuItem, Select, Tooltip } from '@material-ui/core';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
 import setCurrentPage from '../../actions/currentPageAction';
@@ -91,10 +91,15 @@ const Nav = () => {
             />
           </div>
           <Box className={classes.navIcons}>
-            <IconButton className={classes.navButton} onClick={handleChangeTheme} color="secondary">
-              {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
-            </IconButton>
-
+            <Tooltip title="Toggle light/dark theme">
+              <IconButton
+                className={classes.navButton}
+                onClick={handleChangeTheme}
+                color="secondary"
+              >
+                {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
+            </Tooltip>
             {/* Log in button, breakpoint */}
             {window.screen.width >= 960 ? (
               <Button className={classes.navButton} color="secondary" variant="outlined">
