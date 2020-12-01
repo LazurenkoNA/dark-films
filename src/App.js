@@ -13,7 +13,7 @@ import {
   fetchTopRatedMovie,
 } from './actions/moviesAction';
 import Nav from './components/Nav/Nav';
-import CardSection from './components/CardSection/CardSection';
+import Home from './pages/Home/Home';
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +53,7 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Nav />
+      <Home />
     </MuiThemeProvider>
   );
 }

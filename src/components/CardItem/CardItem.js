@@ -8,6 +8,7 @@ import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import { Info } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import { Tooltip } from '@material-ui/core';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
 
@@ -24,26 +25,29 @@ const CardItem = ({ title, rate, release, poster }) => {
         <IconButton className={classes.cardInfo}>
           <Info />
         </IconButton>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              className={classes.cardMedia}
-              alt="Contemplative Reptile"
-              height="340"
-              image={`${posterImgUrl}${poster}`}
-              title=""
-            />
-            <CardContent>
-              <Typography gutterBottom variant="subtitle1" component="h2">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {release}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Tooltip title={title.length >= 25 ? title : ''}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                className={classes.cardMedia}
+                alt="Contemplative Reptile"
+                height="340"
+                image={`${posterImgUrl}${poster}`}
+                title=""
+                z
+              />
+              <CardContent>
+                <Typography gutterBottom noWrap variant="subtitle1" component="h2">
+                  {title.length >= 24 ? `${title.slice(0, 21)}...` : title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {release}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Tooltip>
       </Badge>
     </div>
   );
