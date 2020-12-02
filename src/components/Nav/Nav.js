@@ -12,8 +12,13 @@ import toggleTheme from '../../actions/themeAction';
 import setCurrentPage from '../../actions/currentPageAction';
 
 const Nav = () => {
-  // Styles
   const classes = useStyles();
+
+  const listButton = [
+    { name: 'Movies', id: 4212 },
+    { name: 'Genres', id: 4213 },
+    { name: 'Persons', id: 4214 },
+  ];
 
   const dispatch = useDispatch();
   const { isDarkTheme } = useSelector((state) => state.theme);
@@ -41,23 +46,18 @@ const Nav = () => {
           <Typography className={classes.title} variant="h6" color="secondary" noWrap>
             DARK FILMS
           </Typography>
-
-          {/* Categories List */}
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
-              {/* Refactoring through .map */}
-              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
-                movies
-              </Button>
-              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
-                cartoons
-              </Button>
-              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
-                anime
-              </Button>
-              <Button className={classes.navButton} onClick={handleChangePage} color="secondary">
-                serials
-              </Button>
+              {listButton.map(({ name, id }) => (
+                <Button
+                  className={classes.navButton}
+                  key={id}
+                  onClick={handleChangePage}
+                  color="secondary"
+                >
+                  {name}
+                </Button>
+              ))}
             </Box>
           ) : (
             <Box className={classes.navList}>
@@ -67,13 +67,13 @@ const Nav = () => {
                   onChange={handleChangePage}
                   className={classes.formControlSelect}
                 >
-                  {/* Refactoring through .map */}
-                  <MenuItem value="movies">Movies</MenuItem>
-                  <MenuItem value="cartoons">Cartoons</MenuItem>
-                  <MenuItem value="anime">Anime</MenuItem>
-                  <MenuItem value="serials">Serials</MenuItem>
+                  {listButton.map(({ name, id }) => (
+                    <MenuItem key={id} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
                 </Select>
-              </FormControl>{' '}
+              </FormControl>
             </Box>
           )}
 
@@ -100,7 +100,6 @@ const Nav = () => {
                 {isDarkTheme ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </Tooltip>
-            {/* Log in button, breakpoint */}
             {window.screen.width >= 960 ? (
               <Button className={classes.navButton} color="secondary" variant="outlined">
                 LOG IN

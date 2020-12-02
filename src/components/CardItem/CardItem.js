@@ -12,7 +12,7 @@ import { Tooltip } from '@material-ui/core';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
 
-const CardItem = ({ title, rate, release, poster }) => {
+const CardItem = ({ titleCard, rate, release, poster }) => {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,7 @@ const CardItem = ({ title, rate, release, poster }) => {
         <IconButton className={classes.cardInfo}>
           <Info />
         </IconButton>
-        <Tooltip title={title.length >= 25 ? title : ''}>
+        <Tooltip title={titleCard.length >= 24 ? titleCard : ''}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia
@@ -39,7 +39,7 @@ const CardItem = ({ title, rate, release, poster }) => {
               />
               <CardContent>
                 <Typography gutterBottom noWrap variant="subtitle1" component="h2">
-                  {title.length >= 24 ? `${title.slice(0, 21)}...` : title}
+                  {titleCard.length >= 24 ? `${titleCard.slice(0, 20)}...` : titleCard}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                   {release}
@@ -54,7 +54,7 @@ const CardItem = ({ title, rate, release, poster }) => {
 };
 
 CardItem.propTypes = {
-  title: PropTypes.string,
+  titleCard: PropTypes.string,
   rate: PropTypes.number,
   release: PropTypes.string,
   poster: PropTypes.string,

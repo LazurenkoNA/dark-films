@@ -1,13 +1,11 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-// import { useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import useStyles from './hooks';
 
 const CardSection = ({ content }) => {
   const classes = useStyles();
-  // const { nowPlaying } = useSelector((state) => state.movies);
 
   return (
     <div style={{ padding: 15 }}>
@@ -16,7 +14,7 @@ const CardSection = ({ content }) => {
           <Grid key={id} item>
             <CardItem
               id={id}
-              title={title}
+              titleCard={title}
               release={release_date}
               rate={vote_average}
               poster={poster_path}
