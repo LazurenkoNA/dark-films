@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { Brightness4, Brightness7, Person, Search } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, FormControl, MenuItem, Select, Tooltip } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
 import setCurrentPage from '../../actions/currentPageAction';
@@ -15,9 +16,9 @@ const Nav = () => {
   const classes = useStyles();
 
   const listButton = [
-    { name: 'Movies', id: 4212 },
-    { name: 'Genres', id: 4213 },
-    { name: 'Persons', id: 4214 },
+    { name: 'Movies', id: 4212, path: '/' },
+    { name: 'Genres', id: 4213, path: '/genres' },
+    { name: 'Persons', id: 4214, path: '/persons' },
   ];
 
   const dispatch = useDispatch();
@@ -48,15 +49,17 @@ const Nav = () => {
           </Typography>
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
-              {listButton.map(({ name, id }) => (
-                <Button
-                  className={classes.navButton}
-                  key={id}
-                  onClick={handleChangePage}
-                  color="secondary"
-                >
-                  {name}
-                </Button>
+              {listButton.map(({ name, id, path }) => (
+                <Link to={path}>
+                  <Button
+                    className={classes.navButton}
+                    key={id}
+                    onClick={handleChangePage}
+                    color="secondary"
+                  >
+                    {name}
+                  </Button>
+                </Link>
               ))}
             </Box>
           ) : (

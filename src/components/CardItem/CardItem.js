@@ -33,9 +33,8 @@ const CardItem = ({ titleCard, rate, release, poster }) => {
                 className={classes.cardMedia}
                 alt="Contemplative Reptile"
                 height="340"
-                image={`${posterImgUrl}${poster}`}
+                image={`${posterImgUrl}w500${poster}`}
                 title=""
-                z
               />
               <CardContent>
                 <Typography gutterBottom noWrap variant="subtitle1" component="h2">

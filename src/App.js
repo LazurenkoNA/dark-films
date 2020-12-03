@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { blue, grey, orange, red } from '@material-ui/core/colors';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import {
   fetchCasts,
   fetchGenreMovies,
-  // fetchMovieByGenreData,
+  fetchMovieByGenreData,
   fetchMovieDetail,
   fetchNowMovies,
   fetchPersonsData,
@@ -13,9 +14,11 @@ import {
   fetchTopRatedMovie,
 } from './actions/moviesAction';
 import Nav from './components/Nav/Nav';
+import Home from './pages/Home/Home';
 import Genres from './pages/Genres/Genres';
 
 function App() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const { isDarkTheme } = useSelector((state) => state.theme);
 
@@ -25,6 +28,15 @@ function App() {
   const mainSecondaryColor = isDarkTheme ? grey[800] : blue[50];
   const badgeColor = isDarkTheme ? orange[300] : red[500];
   const theme = createMuiTheme({
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          a: {
+            textDecoration: 'none',
+          },
+        },
+      },
+    },
     palette: {
       type: palletType,
       primary: {
@@ -37,11 +49,10 @@ function App() {
     },
   });
 
-  // Test fetch data on start rendering
   useEffect(() => {
     dispatch(fetchNowMovies());
     dispatch(fetchGenreMovies());
-    // dispatch(fetchMovieByGenreData(99));
+    dispatch(fetchMovieByGenreData(99));
     dispatch(fetchPersonsData());
     dispatch(fetchTopRatedMovie());
     dispatch(fetchMovieDetail(671039));
@@ -53,7 +64,15 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Nav />
-      <Genres />
+      <Switch location={location} key={location.pathname}>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/genres" exact>
+          <Genres />
+        </Route>
+        <Route path="/persons" exact />
+      </Switch>
     </MuiThemeProvider>
   );
 }
