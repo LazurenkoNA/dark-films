@@ -13,7 +13,6 @@ import {
   fetchTopRatedMovie,
 } from './actions/moviesAction';
 import Nav from './components/Nav/Nav';
-// import Home from './pages/Home/Home';
 import Genres from './pages/Genres/Genres';
 
 function App() {
@@ -54,7 +53,6 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Nav />
-      {/* <Home /> */}
       <Genres />
     </MuiThemeProvider>
   );

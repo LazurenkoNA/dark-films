@@ -16,7 +16,7 @@ const Slider = ({ content }) => {
 
   return (
     <div className={classes.root}>
-      {content.length && (
+      {!!content.length && (
         <Swiper
           spaceBetween={20}
           slidesPerView={7}
