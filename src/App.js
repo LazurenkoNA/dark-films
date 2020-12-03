@@ -5,7 +5,7 @@ import { blue, grey, orange, red } from '@material-ui/core/colors';
 import {
   fetchCasts,
   fetchGenreMovies,
-  fetchMovieByGenreData,
+  // fetchMovieByGenreData,
   fetchMovieDetail,
   fetchNowMovies,
   fetchPersonsData,
@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchNowMovies());
     dispatch(fetchGenreMovies());
-    dispatch(fetchMovieByGenreData(99));
+    // dispatch(fetchMovieByGenreData(99));
     dispatch(fetchPersonsData());
     dispatch(fetchTopRatedMovie());
     dispatch(fetchMovieDetail(671039));
