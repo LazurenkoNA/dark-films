@@ -70,8 +70,8 @@ const Nav = () => {
                   onChange={handleChangePage}
                   className={classes.formControlSelect}
                 >
-                  {listButton.map(({ name, id }) => (
-                    <MenuItem key={id} value={name}>
+                  {listButton.map(({ name, id, path }) => (
+                    <MenuItem key={id} value={name} component={Link} to={path}>
                       {name}
                     </MenuItem>
                   ))}
