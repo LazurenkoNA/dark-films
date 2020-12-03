@@ -8,10 +8,11 @@ import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import { Info } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import { Tooltip } from '@material-ui/core';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
 
-const CardItem = ({ title, rate, release, poster }) => {
+const CardItem = ({ titleCard, rate, release, poster }) => {
   const classes = useStyles();
 
   return (
@@ -24,33 +25,35 @@ const CardItem = ({ title, rate, release, poster }) => {
         <IconButton className={classes.cardInfo}>
           <Info />
         </IconButton>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              className={classes.cardMedia}
-              alt="Contemplative Reptile"
-              height="340"
-              image={`${posterImgUrl}${poster}`}
-              title=""
-            />
-            <CardContent>
-              <Typography gutterBottom variant="subtitle1" component="h2">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {release}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Tooltip title={titleCard.length >= 24 ? titleCard : ''}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                className={classes.cardMedia}
+                alt="Contemplative Reptile"
+                height="340"
+                image={`${posterImgUrl}w500${poster}`}
+                title=""
+              />
+              <CardContent>
+                <Typography gutterBottom noWrap variant="subtitle1" component="h2">
+                  {titleCard.length >= 24 ? `${titleCard.slice(0, 20)}...` : titleCard}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {release}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Tooltip>
       </Badge>
     </div>
   );
 };
 
 CardItem.propTypes = {
-  title: PropTypes.string,
+  titleCard: PropTypes.string,
   rate: PropTypes.number,
   release: PropTypes.string,
   poster: PropTypes.string,

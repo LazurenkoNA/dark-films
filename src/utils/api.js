@@ -2,7 +2,7 @@ const baseURL = `https://api.themoviedb.org/3`;
 
 export const apiKey = 'ee545096570d58623c4631d622b9e874';
 
-export const posterImgUrl = 'https://image.tmdb.org/t/p/original/';
+export const posterImgUrl = 'https://image.tmdb.org/t/p/';
 export const personImgUrl = 'https://image.tmdb.org/t/p/w200';
 
 export const nowPlaying = `${baseURL}/movie/now_playing`;

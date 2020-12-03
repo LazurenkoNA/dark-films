@@ -1,8 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+// eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(1),
+  root: {},
+  slideWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
