@@ -8,3 +8,4 @@ export const FETCH_CASTS = 'FETCH_CASTS';
 export const FETCH_SIMILAR_MOVIE = 'FETCH_SIMILAR_MOVIE';
 export const TOGGLE_THEME = 'TOGGLE_THEME';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const CHANGE_GENRE_NAME = 'CHANGE_GENRE_NAME';
