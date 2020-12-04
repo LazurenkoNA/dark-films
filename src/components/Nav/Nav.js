@@ -51,10 +51,9 @@ const Nav = () => {
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
               {listButton.map(({ name, id, path }) => (
-                <Link to={path}>
+                <Link to={path} key={id}>
                   <Button
                     className={classes.navButton}
-                    key={id}
                     onClick={handleChangePage}
                     color="secondary"
                   >
