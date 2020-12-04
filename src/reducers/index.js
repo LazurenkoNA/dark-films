@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   movies: moviesReducer,
   theme: themeReducer,
   currentPage: currentPageReducer,
-  currentGenre: currentGenreReducer
+  currentGenre: currentGenreReducer,
 });
 
 export default rootReducer;

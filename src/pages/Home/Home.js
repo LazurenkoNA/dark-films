@@ -8,8 +8,8 @@ const Home = () => {
 
   return (
     <div style={{ paddingTop: '6rem' }}>
-      {nowPlaying && <SliderSection content={nowPlaying} title='Now Playing' />}
-      {topRated && <SliderSection content={topRated} title='Top rated' />}
+      {nowPlaying && <SliderSection content={nowPlaying} title="Now Playing" />}
+      {topRated && <SliderSection content={topRated} title="Top rated" />}
     </div>
   );
 };
