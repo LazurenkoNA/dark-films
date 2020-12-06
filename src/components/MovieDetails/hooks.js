@@ -25,11 +25,14 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: '100%',
   },
+  genresItem: {
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
   rating: {
     display: 'flex',
-    flexDirection: 'column',
-    '& > * + *': {
-      marginTop: theme.spacing(1),
+    '& > *': {
+      marginTop: theme.spacing(0.5),
     },
   },
 }));

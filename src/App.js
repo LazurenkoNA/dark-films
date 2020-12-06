@@ -7,10 +7,8 @@ import {
   fetchCasts,
   fetchGenreMovies,
   fetchMovieByGenreData,
-  fetchMovieDetail,
   fetchNowMovies,
   fetchPersonsData,
-  fetchSimilarMovie,
   fetchTopRatedMovie,
 } from './actions/moviesAction';
 import Nav from './components/Nav/Nav';
@@ -58,9 +56,7 @@ function App() {
     dispatch(fetchMovieByGenreData(99));
     dispatch(fetchPersonsData());
     dispatch(fetchTopRatedMovie());
-    dispatch(fetchMovieDetail(671039));
     dispatch(fetchCasts(671039));
-    dispatch(fetchSimilarMovie(531499));
   }, [dispatch]);
 
   return (

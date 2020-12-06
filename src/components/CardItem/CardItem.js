@@ -8,22 +8,15 @@ import Badge from '@material-ui/core/Badge';
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
-import { fetchMovieDetail } from '../../actions/moviesAction';
 
 const CardItem = ({ titleCard, rate, release, poster, id }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const currentMovieDetailHandler = () => {
-    dispatch(fetchMovieDetail(id));
-  };
 
   return (
     <div className="paddingTOP">
-      <Link to={`/movie/${id}`} onClick={currentMovieDetailHandler}>
+      <Link to={`/movie/${id}`}>
         <Badge
           className={classes.cardBadge}
           badgeContent={rate}
