@@ -7,15 +7,15 @@ import {
   fetchCasts,
   fetchGenreMovies,
   fetchMovieByGenreData,
-  fetchMovieDetail,
   fetchNowMovies,
   fetchPersonsData,
-  fetchSimilarMovie,
   fetchTopRatedMovie,
 } from './actions/moviesAction';
 import Nav from './components/Nav/Nav';
-import Home from './pages/Home/Home';
+import Movies from './pages/Movies/Movies';
 import Genres from './pages/Genres/Genres';
+import Persons from './pages/Persons/Persons';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 function App() {
   const location = useLocation();
@@ -49,15 +49,14 @@ function App() {
     },
   });
 
+  // Fetch Data
   useEffect(() => {
     dispatch(fetchNowMovies());
     dispatch(fetchGenreMovies());
     dispatch(fetchMovieByGenreData(99));
     dispatch(fetchPersonsData());
     dispatch(fetchTopRatedMovie());
-    dispatch(fetchMovieDetail(671039));
     dispatch(fetchCasts(671039));
-    dispatch(fetchSimilarMovie(531499));
   }, [dispatch]);
 
   return (
@@ -66,12 +65,17 @@ function App() {
       <Nav />
       <Switch location={location} key={location.pathname}>
         <Route path="/" exact>
-          <Home />
+          <Movies />
+        </Route>
+        <Route path="/movie/:id">
+          <MovieDetails />
         </Route>
         <Route path="/genres" exact>
           <Genres />
         </Route>
-        <Route path="/persons" exact />
+        <Route path="/persons" exact>
+          <Persons />
+        </Route>
       </Switch>
     </MuiThemeProvider>
   );

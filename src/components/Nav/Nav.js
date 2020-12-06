@@ -6,7 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { Brightness4, Brightness7, Person, Search } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, FormControl, MenuItem, Select, Tooltip } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
@@ -51,10 +56,9 @@ const Nav = () => {
           {window.screen.width >= 960 ? (
             <Box className={classes.navList}>
               {listButton.map(({ name, id, path }) => (
-                <Link to={path}>
+                <Link to={path} key={id}>
                   <Button
                     className={classes.navButton}
-                    key={id}
                     onClick={handleChangePage}
                     color="secondary"
                   >
