@@ -5,8 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import { Info } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom';
@@ -31,9 +29,6 @@ const CardItem = ({ titleCard, rate, release, poster, id }) => {
           badgeContent={rate}
           anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <IconButton className={classes.cardInfo}>
-            <Info />
-          </IconButton>
           <Tooltip title={titleCard.length >= 24 ? titleCard : ''}>
             <Card className={classes.root}>
               <CardActionArea>

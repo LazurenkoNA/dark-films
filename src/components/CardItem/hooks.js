@@ -17,13 +17,6 @@ const useStyles = makeStyles((theme) => ({
       pointerEvents: 'none',
     },
   },
-  cardInfo: {
-    position: 'absolute',
-    top: theme.spacing(0),
-    right: theme.spacing(0),
-    zIndex: 1,
-    color: 'white',
-  },
 }));
 
 export default useStyles;
