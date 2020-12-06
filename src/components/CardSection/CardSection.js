@@ -7,28 +7,29 @@ import useStyles from './hooks';
 
 const CardSection = ({ content, titleSection }) => {
   const classes = useStyles();
-
+  console.log(content);
   return (
     <div style={{ padding: 15 }}>
-      {titleSection && (
+      {!!content.length && (
         <Typography className={classes.sectionTitle} variant="h4" component="h2">
           {titleSection}
         </Typography>
       )}
-
-      <Grid container className={classes.root} justify="center" spacing={3}>
-        {content.map(({ id, title, release_date, vote_average, poster_path }) => (
-          <Grid key={id} item>
-            <CardItem
-              id={id}
-              titleCard={title}
-              release={release_date}
-              rate={vote_average}
-              poster={poster_path}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {!!content.length && (
+        <Grid container className={classes.root} justify="center" spacing={3}>
+          {content.map(({ id, title, release_date, vote_average, poster_path }) => (
+            <Grid key={id} item>
+              <CardItem
+                id={id}
+                titleCard={title}
+                release={release_date}
+                rate={vote_average}
+                poster={poster_path}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </div>
   );
 };

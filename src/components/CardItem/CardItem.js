@@ -8,14 +8,16 @@ import Badge from '@material-ui/core/Badge';
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
+import { popup } from '../../animations/animations';
 
 const CardItem = ({ titleCard, rate, release, poster, id }) => {
   const classes = useStyles();
 
   return (
-    <div className="paddingTOP">
+    <motion.div className="paddingTOP" variants={popup} initial="hidden" animate="show">
       <Link to={`/movie/${id}`}>
         <Badge
           className={classes.cardBadge}
@@ -46,7 +48,7 @@ const CardItem = ({ titleCard, rate, release, poster, id }) => {
           </Tooltip>
         </Badge>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

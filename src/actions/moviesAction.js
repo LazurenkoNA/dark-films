@@ -6,6 +6,7 @@ import {
   movieURL,
   nowPlaying,
   personsURL,
+  searchURL,
   topRatedURL,
 } from '../utils/api';
 import {
@@ -15,6 +16,7 @@ import {
   FETCH_MOVIES_DETAIL,
   FETCH_NOW_PLAYING,
   FETCH_PERSONS,
+  FETCH_SEARCH_MOVIES,
   FETCH_SIMILAR_MOVIE,
   FETCH_TOP_RATED_MOVIE,
 } from '../utils/constants';
@@ -136,6 +138,22 @@ export const fetchSimilarMovie = (id) => async (dispatch) => {
     type: FETCH_SIMILAR_MOVIE,
     payload: {
       similarMovie: similarMovieData.data.results,
+    },
+  });
+};
+
+export const fetchSearchMovie = (searchingRequest) => async (dispatch) => {
+  const searchMovieData = await axios.get(`${searchURL}/`, {
+    params: {
+      api_key: apiKey,
+      query: searchingRequest,
+      page: 1,
+    },
+  });
+  dispatch({
+    type: FETCH_SEARCH_MOVIES,
+    payload: {
+      searchMovie: searchMovieData.data.results,
     },
   });
 };

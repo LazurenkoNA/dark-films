@@ -11,3 +11,4 @@ export const movieURL = `${baseURL}/movie`;
 export const genreURL = `${baseURL}/genre/movie/list`;
 export const moviesURL = `${baseURL}/discover/movie`;
 export const personsURL = `${baseURL}/trending/person/week`;
+export const searchURL = `${baseURL}/search/movie`;

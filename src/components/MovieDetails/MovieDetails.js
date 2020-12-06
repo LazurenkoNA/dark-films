@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
+import { motion } from 'framer-motion';
 import useStyles from './hooks';
 import { posterImgUrl } from '../../utils/api';
 import {
@@ -14,6 +15,7 @@ import {
 } from '../../actions/moviesAction';
 import setCurrentGenre from '../../actions/currentGenreAction';
 import CardSection from '../CardSection/CardSection';
+import { popup } from '../../animations/animations';
 
 const MovieDetails = () => {
   const classes = useStyles();
@@ -52,8 +54,14 @@ const MovieDetails = () => {
       </Typography>
       <Grid container spacing={3}>
         <Grid item sm={4}>
-          <img className={classes.image} src={`${posterImgUrl}w500/${posterURL}`} alt="" />
-          {topRated && <CardSection content={topRated} titleSection="Top Rated" />}
+          <motion.img
+            className={classes.image}
+            src={`${posterImgUrl}w500/${posterURL}`}
+            alt=""
+            variants={popup}
+            initial="hidden"
+            animate="show"
+          />
         </Grid>
         <Grid item sm={8}>
           {overview && (
@@ -67,7 +75,7 @@ const MovieDetails = () => {
             </Box>
           )}
 
-          {release && (
+          {!!release && (
             <Box className={classes.listItem}>
               <Typography className={classes.listTitle} variant="h6">
                 Release:
@@ -78,7 +86,7 @@ const MovieDetails = () => {
             </Box>
           )}
 
-          {rating && (
+          {!!rating && (
             <Box className={classes.listItem}>
               <Typography className={classes.listTitle} variant="h6">
                 Rating:
@@ -94,7 +102,7 @@ const MovieDetails = () => {
             </Box>
           )}
 
-          {tagline && (
+          {!!tagline && (
             <Box className={classes.listItem}>
               <Typography className={classes.listTitle} variant="h6">
                 Tagline:
@@ -105,7 +113,7 @@ const MovieDetails = () => {
             </Box>
           )}
 
-          {genres && (
+          {!!genres && (
             <Box className={classes.listItem}>
               <Typography className={classes.listTitle} variant="h6">
                 Genres:
@@ -127,8 +135,10 @@ const MovieDetails = () => {
             </Box>
           )}
 
-          {similarMovie && <CardSection content={similarMovie} titleSection="Similar" />}
+          <CardSection content={similarMovie} titleSection="Similar" />
         </Grid>
+
+        <CardSection content={topRated} titleSection="Top Rated" />
       </Grid>
     </div>
   );
