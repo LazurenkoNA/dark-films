@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,12 +13,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import useStyles from './hooks';
 import toggleTheme from '../../actions/themeAction';
 import setCurrentPage from '../../actions/currentPageAction';
+import { fetchSearchMovie } from '../../actions/moviesAction';
 
 const Nav = () => {
   const classes = useStyles();
+  const [textInput, setTextInput] = useState('');
 
   const listButton = [
     { name: 'Movies', id: 4212, path: '/' },
@@ -45,9 +48,18 @@ const Nav = () => {
       dispatch(setCurrentPage(textContent));
     }
   };
+  const inputHandler = (e) => {
+    setTextInput(e.target.value);
+  };
+  const inputSearchHandler = (e) => {
+    if (e.key === 'Enter') {
+      dispatch(fetchSearchMovie(textInput));
+      setTextInput('');
+    }
+  };
 
   return (
-    <div className={classes.root}>
+    <motion.div className={classes.root} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography className={classes.title} variant="h6" color="secondary" noWrap>
@@ -95,9 +107,13 @@ const Nav = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              value={textInput}
+              onChange={inputHandler}
+              onKeyDown={inputSearchHandler}
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+
           <Box className={classes.navIcons}>
             <Tooltip title="Toggle light/dark theme">
               <IconButton
@@ -120,7 +136,7 @@ const Nav = () => {
           </Box>
         </Toolbar>
       </AppBar>
-    </div>
+    </motion.div>
   );
 };
 

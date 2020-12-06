@@ -5,6 +5,7 @@ import {
   FETCH_MOVIES_DETAIL,
   FETCH_NOW_PLAYING,
   FETCH_PERSONS,
+  FETCH_SEARCH_MOVIES,
   FETCH_SIMILAR_MOVIE,
   FETCH_TOP_RATED_MOVIE,
 } from '../utils/constants';
@@ -18,6 +19,7 @@ const initState = {
   movieDetail: [],
   casts: [],
   similarMovie: [],
+  searchMovie: [],
 };
 
 const moviesReducer = (state = initState, action) => {
@@ -61,6 +63,11 @@ const moviesReducer = (state = initState, action) => {
       return {
         ...state,
         similarMovie: action.payload.similarMovie,
+      };
+    case FETCH_SEARCH_MOVIES:
+      return {
+        ...state,
+        searchMovie: action.payload.searchMovie,
       };
     default:
       return state;
